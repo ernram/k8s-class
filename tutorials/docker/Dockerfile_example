@@ -1,0 +1,17 @@
+# Set the base image
+FROM node:18-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the current directory
+COPY . /app
+
+# Run a command during build time
+RUN yarn install --production
+
+# Expose the container port
+EXPOSE 8080
+
+# Specify the entrypoint script
+ENTRYPOINT ["node", "app.js"]

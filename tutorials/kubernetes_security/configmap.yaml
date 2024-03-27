@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: test-app
+data:
+  nginx.conf: |
+    user nginx;
+    worker_processes auto;
+    pid /run/nginx.pid;
+    
+    events {
+      worker_connections  1024;
+    }
+    
+    http {
+      server {
+        listen 80;
+        server_name localhost;
+      
+        location / {
+          return 200 'We have changed the configmap!';
+          add_header Content-Type text/plain;
+        }
+      }
+    }

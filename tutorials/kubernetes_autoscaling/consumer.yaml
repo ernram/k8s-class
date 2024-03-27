@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-consumer
+spec:
+  selector:
+    matchLabels:
+      app: rabbitmq-consumer
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-consumer
+    spec:
+      containers:
+      - name: rabbitmq-consumer
+        image: bitnami/rabbitmq:latest
+        env:
+        - name: RABBITMQ_HOST
+          value: rabbitmq.default.svc.cluster.local
+        - name: RABBITMQ_PORT
+          value: "5672"
+        - name: QUEUE_NAME
+          value: hello
+        - name: RABBITMQ_USERNAME
+          value: user
+        - name: RABBITMQ_PASSWORD
+          value: PASSWORD
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: rabbitmq-consumer
+spec:
+  scaleTargetRef:
+    name: rabbitmq-consumer
+  triggers:
+  - type: rabbitmq
+    metadata:
+      host: amqp://user:PASSWORD@rabbitmq.default.svc.cluster.local:5672
+      mode: QueueLength
+      queueName: hello
+      value: '5.0'

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-app-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ssd
+  selector:
+    matchLabels:
+      storageType: "fast"
+    matchExpressions:
+      - {key: environment, operator: In, values: [prod]}
