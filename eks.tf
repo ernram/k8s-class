@@ -9,7 +9,7 @@ locals {
 ################################################################################
 
 module "eks" {
-  source = "terraform-aws-modules/eks/aws"
+  source  = "terraform-aws-modules/eks/aws"
   version = "19.15.3"
 
   cluster_name                   = local.name
@@ -38,8 +38,8 @@ module "eks" {
       most_recent = true
     }
     vpc-cni = {
-      most_recent              = true
-      before_compute           = true
+      most_recent    = true
+      before_compute = true
     }
   }
 
@@ -126,8 +126,8 @@ module "eks" {
       }
       iam_role_additional_policies = {
         AmazonEC2ContainerRegistryReadOnly = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-        AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-        AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+        AmazonSSMManagedInstanceCore       = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+        AmazonEBSCSIDriverPolicy           = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
       }
 
       tags = {
