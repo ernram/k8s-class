@@ -2,27 +2,36 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "TICKET-12345" ]
+    branches: [ "TICKET-12345", "main" ]
   pull_request:
 
 permissions:
   contents: read
 
 jobs:
-  terraform:
+  job-1:
     name: 'Terraform'
     runs-on: ubuntu-latest
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
-
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
 
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Validate
+      run: terraform validate
+  job-2:
+    needs: job-1
+    name: 'Terraform for job-2'
+    runs-on: ubuntu-latest
+    steps:
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -37,4 +46,4 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Validate
-      run: terraform validate
+      run: terraform validate 
