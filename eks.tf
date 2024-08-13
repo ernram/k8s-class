@@ -1,5 +1,5 @@
 locals {
-  name = "my-eks-cluster"
+  name = "my-eks-cluster-new"
   tags = {
     Name = local.name
   }
