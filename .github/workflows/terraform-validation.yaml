@@ -28,7 +28,6 @@ jobs:
     - name: Terraform Validate
       run: terraform validate
   job-2:
-    needs: job-1
     name: 'Terraform for job-2'
     runs-on: ubuntu-latest
     steps:
