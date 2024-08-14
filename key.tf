@@ -1,4 +1,4 @@
 resource "aws_key_pair" "ec2_key" {
-  key_name = "eks-key"
-  public_key = "ADD PUBLIC KEY HERE"
+  key_name   = "eks-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC+kUhttS8KMAzLvE1BP4DJLf6gq+bKfSjvHEWSgO51GmJN5G0z7Z1BozaMCgYzd93YPliefV2OiUlvUKIAviDteKr1KiOF4GJbgevhzZF8+xdOABbArY6ud2vJYs/pJMuoA7+72W2o8GexNvfJO7UjH1xE33w/mlTRnxNRrNoZHkar5k76Q0B6yvnW5PUanlnp9RPFFn7hpDzASrOlxN9wKitJqmXSWkiEUEkSCQ503WdB1z14j/DF3dnPNgNa7jECCxkDBS9Z5Y68mc5UIC+WUSMBRWJS0eQWkHDBq4LYp6N41eOnnpPTI7PWsB+okdIV80g7I0HXv77td8PMw4BJ/ROKfce0xTMh4hXBa4YgMmX5yoKvcNCexwQD/d9jsVJziIpIRNOQc0vonK62CeFIJWNBNUMPsTmJMgUrspZuAe/mFfz9qiolQ8W7PhGtOn652nXw1fYT3XAImqwO9CUMCMxZHZqZr2t5G+JitmZ1cp6CkJDrm1EVrz4ACKoBXKc= student@ErnestsacStudio.downer"
 }
